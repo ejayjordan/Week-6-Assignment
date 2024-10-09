@@ -1,4 +1,5 @@
 'use client'
+import { subscribe } from 'diagnostics_channel';
 import React, { useState } from 'react';
 
  function submitRecipies([]){
@@ -11,6 +12,16 @@ import React, { useState } from 'react';
     return [inputValue, handleChange];
   }
 
+  export async function Array() {
+    let allPosts = await submitRecipies.select().from(inputValues)
+    return (
+      <ul>
+        {allPosts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    )
+  }
   export default function Home() {
     const [inputValues, handleChange] = submitRecipies(["name"]);
 
